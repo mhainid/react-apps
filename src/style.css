@@ -1,0 +1,9 @@
+.app{
+    text-align: center;
+    margin-top: 200px;
+    
+}
+.app button{
+    background-color: rgb(87, 246, 211);
+    color: black;
+}
