@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef } from 'react'
 
 export default function App() {
-  const [val,setVal] = useState ('')
-  const [data,setData]=useState ([])
-  useEffect(()=>{
-    fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((response)=>{
-      return response.json()
-    })
-    .then((data)=>{
-      setData(data)
-    })
+  const nameRef=useRef()
+  const emailRef=useRef()
+  const passwordRef=useRef()
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    const nameValue=nameRef.current.value
+    const emailValue=emailRef.current.value
+    const passwordValue=passwordRef.current.value
 
-  },[val])
-  console.log(data)
+    alert("name :"+nameValue+"  email :"+emailValue+"  password :"+passwordValue)
+  }
   return (
     <div>
-      list de postes a partir de l'api : 
-      <input type='text' onChange={(e)=>{
-        setVal(e.target.value)
-      }}/>
-        <ul>
-          {
-            data.filter((item)=>item.userId==val).map((item)=>{
-              return <li>{item.title}</li>
-            })
-          }
-        </ul>
-
+      <form onSubmit={handleSubmit}>
+        <label>
+          name : <input type='text' ref={nameRef} />
+        </label>
+        <label>
+          email : <input type='text' ref={emailRef} />
+        </label>
+        <label>
+          password : <input type='password' ref={passwordRef}/>
+        </label>
+        <input type='submit'/>
+      </form>
+      
     </div>
   )
 }
