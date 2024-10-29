@@ -2,16 +2,19 @@
 // import ReactDOM from 'react-dom/client';
 // import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Compteur from './Compteur';
 import React from "react"; 
 import ReactDOM from 'react-dom/client' 
 import App from './App';
+import Change from './Change';
+import Form from './Form';
 const element = document.getElementById("root"); 
 const root = ReactDOM.createRoot(element); 
 root.render(
 <>
-<App  val={2} />
-<Compteur />
+<App  />
+<Change />
+<Form />
+
 </>
 ); 
 
