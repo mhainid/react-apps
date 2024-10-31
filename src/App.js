@@ -1,32 +1,16 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import UseCount from './UseCount'
+import "./styl.css"
 
 export default function App() {
-  const nameRef=useRef()
-  const emailRef=useRef()
-  const passwordRef=useRef()
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-    const nameValue=nameRef.current.value
-    const emailValue=emailRef.current.value
-    const passwordValue=passwordRef.current.value
+  const [count ,incrementer ,decrementer]= UseCount()
 
-    alert("name :"+nameValue+"  email :"+emailValue+"  password :"+passwordValue)
-  }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          name : <input type='text' ref={nameRef} />
-        </label>
-        <label>
-          email : <input type='text' ref={emailRef} />
-        </label>
-        <label>
-          password : <input type='password' ref={passwordRef}/>
-        </label>
-        <input type='submit'/>
-      </form>
-      
+    <div className='div'>
+      compteur : {count}<br></br>
+      <button onClick={incrementer}>incrementer</button>
+      <button onClick={decrementer}>decrementer</button>
+
     </div>
   )
 }
