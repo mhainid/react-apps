@@ -1,27 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-
-export default function App() {
-  const [users , setUsers] = useState([])
-
-  useEffect (()=>{
-      axios.get("https://jsonplaceholder.typicode.com/users")
-      .then((data)=>{
-        setUsers(data.data)
-      })
-  },[])
+import React from 'react'
+import { Link, Route, Routes } from 'react-router-dom'
+import { About } from './About'
+import { Erro } from './Erro'
+import { Home } from './Home'
+import { Blog } from './Blog'
+export const App = () => {
   return (
     <div>
-      {
-        users.map ((user)=>{
-          return <div>
-            <h3>les informations de l'utilisateur</h3>
-            <p>nom:{user.name}</p>
-            <p>email:{user.email}</p>
-            <p>ville:{user.address.city}</p>
-            </div>
-        })
-      }
+      <nav>
+        <Link to={'/'}>Home </Link> 
+        <Link to={'/about'}>about </Link>
+        <Link to={'blog'}>Blog</Link>
+      </nav>
+      <Routes>
+        <Route path='/' element={< Home />} />
+        <Route path='/about' element={< About />} />
+        <Route path='/blog' element={< Blog />} />
+        <Route path='/*' element={< Erro />} />
+
+      </Routes>
     </div>
   )
 }
