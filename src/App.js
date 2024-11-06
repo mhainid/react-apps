@@ -1,24 +1,18 @@
 import React from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
-import { About } from './About'
-import { Erro } from './Erro'
-import { Home } from './Home'
-import { Blog } from './Blog'
+
+
+import "./css.css"
 export const App = () => {
   return (
     <div>
-      <nav>
-        <Link to={'/'}>Home </Link> 
-        <Link to={'/about'}>about </Link>
-        <Link to={'blog'}>Blog</Link>
+      <nav >
+        <h2>ordinateur portable</h2>
+        <div><Link to={'/pc1'} ><img  src='pc1.jpeg'/></Link><br></br>pc gamer 1</div>
+        <div><Link to={'/pc2'} ><img  src='pc2.jpeg'/></Link><br></br>pc gamer 2</div>
+        <div><Link to={'/pc3'} ><img  src='pc3.jpeg'/></Link><br></br>pc gamer 3</div>
       </nav>
-      <Routes>
-        <Route path='/' element={< Home />} />
-        <Route path='/about' element={< About />} />
-        <Route path='/blog' element={< Blog />} />
-        <Route path='/*' element={< Erro />} />
-
-      </Routes>
+      
     </div>
   )
 }
