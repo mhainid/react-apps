@@ -1,18 +1,31 @@
-import React from 'react'
-import { Link, Route, Routes } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { UserPost } from './UserPost'
 
-
-import "./css.css"
 export const App = () => {
+  const [users,setUsers] = useState([])
+
+  useEffect (()=>{
+    axios.get("https://jsonplaceholder.typicode.com/users")
+    .then((data)=>{
+      setUsers(data.data)
+    })
+},[])
+
+
   return (
     <div>
-      <nav >
-        <h2>ordinateur portable</h2>
-        <div><Link to={'/pc1'} ><img  src='pc1.jpeg'/></Link><br></br>pc gamer 1</div>
-        <div><Link to={'/pc2'} ><img  src='pc2.jpeg'/></Link><br></br>pc gamer 2</div>
-        <div><Link to={'/pc3'} ><img  src='pc3.jpeg'/></Link><br></br>pc gamer 3</div>
-      </nav>
-      
+      <table border={1}>
+        <tr><th>id</th><th>nom&prenom</th><th>username</th><th>email</th><th>postes</th></tr>
+        {
+          users && users.length && 
+          users.map((user)=> {
+            return <tr><td>{user.id}</td><td>{user.name}</td><td>{user.username}</td><td>{user.email}</td><td><Link to={`posts/${user.id}`}>detail</Link></td></tr>
+          })
+        }
+        
+      </table>
     </div>
   )
 }
