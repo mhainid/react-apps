@@ -1,14 +1,13 @@
+const fruits=['banane','pomme']
 
-
-const inisialstate ={nbre:0}
-export const Reduce = (state=inisialstate,action) => {
-  switch(action.type){
-    case "Incrementer":
-        return{...state,nbre:state.nbre+parseInt(action.payload)}
-    case "Decrementer":
-        return{...state,nbre:state.nbre-action.payload}
-    case "inisialiser":
-        return{...state,nbre:0}
-  }
-  return state;
+export const Reduce=(state = fruits , action)=>{
+    switch(action.type){
+        case "add_fruit" :
+            return [...state,action.value]
+        case "remove_fruit" :
+            return []
+        case "remove_1fruit" :
+                return fruits.filter((_,i)=>i!=action.index)
+    }
+    return fruits
 }

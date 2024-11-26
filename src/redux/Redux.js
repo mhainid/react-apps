@@ -1,17 +1,30 @@
+import { type } from '@testing-library/user-event/dist/type'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const Redux = () => {
-  const nbre=useSelector(data=>data.nbre)
-  const dispatch=useDispatch();
-  const [nombre,setNombre] =useState(0)
+    const fruits = useSelector(data=>data)
+    const dispatch = useDispatch()
+    const [fruit,setFruit] = useState("")
   return (
     <div>
-      <p>Counter: {nbre}</p>
-      <input type='nombre' value={nombre} onChange={(e)=>setNombre(e.target.value)}/>
-      <button onClick={()=>dispatch({type:"Incrementer",payload:nombre})}>Incrementer</button>
-      <button onClick={()=>dispatch({type:"Decrementer",payload:nombre})}>Decrementer</button>
-      <button onClick={()=>dispatch({type:"inisialiser"})}>inisialiser</button>
+        <input type='text' value={fruit} onChange={(e)=>setFruit(e.target.value)}/>
+        <button onClick={()=>dispatch({type:"add_fruit",value:fruit})}>add_fruit</button>
+        
+        <ul>
+            {
+                fruits && fruits.length ?
+                fruits.map((fruit,index)=>{
+                    return <div key={index}><li>{fruit}<button onClick={()=>dispatch({type:"remove_1fruit",index:index})}>X</button></li>
+                    </div>
+                })
+                : null
+
+
+            }
+            
+        </ul>
+        <button onClick={()=>dispatch({type:"remove_fruit"})}>remove_fruit</button>
 
     </div>
   )
