@@ -1,13 +1,17 @@
-const fruits=['banane','pomme']
+const contacts=[]
 
-export const Reduce=(state = fruits , action)=>{
+export const Reduce=(state = contacts , action)=>{
     switch(action.type){
-        case "add_fruit" :
-            return [...state,action.value]
-        case "remove_fruit" :
+        case "add" :
+            return [...state,{nom:action.nom,email:action.Email,ville:action.ville}]
+        case "edit" :
+            return  state.map((contact,index)=> index === action.id ? {...contact,nom:action.nom,email:action.Email,ville:action.ville}:contact)
+        case "effacer":
+            return state.filter((contact,index)=> index != action.id )
+        case "filtrer":
+            return state.filter((contact)=> contact.ville === action.ville)
+        case "reinitialiser":
             return []
-        case "remove_1fruit" :
-                return fruits.filter((_,i)=>i!=action.index)
     }
-    return fruits
+    return contacts
 }
